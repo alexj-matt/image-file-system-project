@@ -1,0 +1,24 @@
+/home/ryang/cs202/cs202-24-fuzz-corpus/working/dedup-crashes/crash-9578e0c1563345116f25ddc865019dd24201884b
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==2275928==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000001 (pc 0x7f2021ed3c7b bp 0x000000000001 sp 0x7ffc20be35c0 T0)
+==2275928==The signal is caused by a READ memory access.
+==2275928==Hint: address points to the zero page.
+    #0 0x7f2021ed3c7b in fclose libio/./libio/iofclose.c:48:9
+    #1 0x563a8d34a80f in fclose (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xc380f) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #2 0x563a8d3d2261 in do_close /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfs_tools.c:30:13
+    #3 0x563a8d3cbd75 in do_create_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:166:17
+    #4 0x563a8d3c7e2c in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:51:23
+    #5 0x563a8d3bbb5a in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #6 0x563a8d2dc453 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x55453) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #7 0x563a8d2c61cf in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x3f1cf) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #8 0x563a8d2cbf26 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x44f26) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #9 0x563a8d2f5d42 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x6ed42) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #10 0x7f2021e7ed8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #11 0x7f2021e7ee3f in __libc_start_main csu/../csu/libc-start.c:392:3
+    #12 0x563a8d2c0a94 in _start (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x39a94) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+
+DEDUP_TOKEN: fclose--fclose--do_close--do_create_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main--__libc_start_main--_start
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV libio/./libio/iofclose.c:48:9 in fclose
+==2275928==ABORTING

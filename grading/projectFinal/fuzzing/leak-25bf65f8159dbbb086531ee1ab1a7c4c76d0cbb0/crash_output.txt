@@ -1,0 +1,51 @@
+/home/ryang/cs202/cs202-24-fuzz-corpus/working/dedup-crashes/leak-25bf65f8159dbbb086531ee1ab1a7c4c76d0cbb0
+
+(process:3447253): VIPS-WARNING **: 21:18:24.807: read gave 1 warnings
+
+(process:3447253): VIPS-WARNING **: 21:18:24.807: VipsJpeg: Corrupt JPEG data: 28205 extraneous bytes before marker 0xc4
+VipsJpeg: Invalid JPEG file structure: SOS before SOF
+
+=================================================================
+==3447253==ERROR: AddressSanitizer: attempting double-free on 0x60200001b110 in thread T0:
+    #0 0x562324dff972 in __interceptor_free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xff972) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #1 0x562324e5cacf in do_read_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:235:9
+    #2 0x562324e571d1 in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:46:23
+    #3 0x562324e42caa in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #4 0x562324d635a3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x635a3) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #5 0x562324d4d31f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x4d31f) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #6 0x562324d53076 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x53076) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #7 0x562324d7ce92 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x7ce92) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #8 0x7f326a2afd8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #9 0x7f326a2afe3f in __libc_start_main csu/../csu/libc-start.c:392:3
+    #10 0x562324d47be4 in _start (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x47be4) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+
+DEDUP_TOKEN: __interceptor_free--do_read_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main--__libc_start_main--_start
+0x60200001b110 is located 0 bytes inside of 1-byte region [0x60200001b110,0x60200001b111)
+freed by thread T0 here:
+    #0 0x562324dff972 in __interceptor_free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xff972) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #1 0x562324e6de95 in do_read /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfs_read.c:48:17
+    #2 0x562324e5ca5f in do_read_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:232:13
+    #3 0x562324e571d1 in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:46:23
+    #4 0x562324e42caa in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #5 0x562324d635a3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x635a3) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #6 0x562324d4d31f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x4d31f) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #7 0x562324d53076 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x53076) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #8 0x562324d7ce92 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x7ce92) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #9 0x7f326a2afd8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+DEDUP_TOKEN: __interceptor_free--do_read--do_read_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main
+previously allocated by thread T0 here:
+    #0 0x562324dffe08 in __interceptor_calloc (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xffe08) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #1 0x562324e6cac6 in do_read /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfs_read.c:36:29
+    #2 0x562324e5ca5f in do_read_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:232:13
+    #3 0x562324e571d1 in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:46:23
+    #4 0x562324e42caa in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #5 0x562324d635a3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x635a3) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #6 0x562324d4d31f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x4d31f) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #7 0x562324d53076 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x53076) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #8 0x562324d7ce92 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x7ce92) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #9 0x7f326a2afd8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+DEDUP_TOKEN: __interceptor_calloc--do_read--do_read_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main
+SUMMARY: AddressSanitizer: double-free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xff972) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2) in __interceptor_free
+==3447253==ABORTING

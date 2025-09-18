@@ -1,0 +1,24 @@
+/home/ryang/cs202/cs202-24-fuzz-corpus/working/dedup-crashes/crash-8218ac633e2d8bb4fe875278ec59ffe7316502fa
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==2275583==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x55b9fbba6ee4 bp 0x000000000000 sp 0x7ffca2a7ffd0 T0)
+==2275583==The signal is caused by a READ memory access.
+==2275583==Hint: this fault was caused by a dereference of a high value address (see register values below).  Disassemble the provided pc to learn which register was used.
+    #0 0x55b9fbba6ee4 in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x70ee4) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #1 0x55b9fbc27885 in __interceptor_free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xf1885) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #2 0x55b9fbc814e1 in do_close /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfs_tools.c:33:13
+    #3 0x55b9fbc7ba93 in do_delete_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:214:9
+    #4 0x55b9fbc76e2c in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:51:23
+    #5 0x55b9fbc6ab5a in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #6 0x55b9fbb8b453 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x55453) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #7 0x55b9fbb751cf in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x3f1cf) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #8 0x55b9fbb7af26 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x44f26) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #9 0x55b9fbba4d42 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x6ed42) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+    #10 0x7f2734863d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #11 0x7f2734863e3f in __libc_start_main csu/../csu/libc-start.c:392:3
+    #12 0x55b9fbb6fa94 in _start (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x39a94) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4)
+
+DEDUP_TOKEN: __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType)--__interceptor_free--do_close--do_delete_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main--__libc_start_main--_start
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x70ee4) (BuildId: a80e7149e4e5d9eb7620536a925d7b4c85dfd9c4) in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType)
+==2275583==ABORTING

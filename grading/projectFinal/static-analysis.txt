@@ -1,0 +1,432 @@
+scan-build: Using '/usr/lib/llvm-14/bin/clang' for static analysis
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfscmd.o imgfscmd.c
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o error.o error.c
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o http_net.o http_net.c
+http_net.c: In function 'handle_connection':
+http_net.c:87:42: warning: comparison of integer expressions of different signedness: 'size_t' {aka 'long unsigned int'} and 'int' [-Wsign-compare]
+   87 |         if (extended && message.body.len < content_length) {
+      |                                          ^
+http_net.c:104:49: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  104 |             memset(rcvbuf + MAX_HEADER_SIZE, 0, content_length);
+      |                                                 ^~~~~~~~~~~~~~
+http_net.c: In function 'http_reply':
+http_net.c:266:81: warning: format '%d' expects argument of type 'int', but argument 8 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
+  266 |     int header_len = snprintf(header, sizeof(header), "%s%s%s%sContent-Length: %d%s",
+      |                                                                                ~^
+      |                                                                                 |
+      |                                                                                 int
+      |                                                                                %ld
+  267 |                               HTTP_PROTOCOL_ID, status, HTTP_LINE_DELIM, headers, body_len, HTTP_HDR_END_DELIM);
+      |                                                                                   ~~~~~~~~
+      |                                                                                   |
+      |                                                                                   size_t {aka long unsigned int}
+http_net.c:269:30: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  269 |     int msg_len = header_len + body_len;
+      |                              ^
+http_net.c:269:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  269 |     int msg_len = header_len + body_len;
+      |                   ^~~~~~~~~~
+http_net.c:270:34: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  270 |     char* buffer = (char*)calloc(msg_len, 1);
+      |                                  ^~~~~~~
+http_net.c:276:32: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  276 |     if (memcpy(buffer, header, header_len) == NULL) {
+      |                                ^~~~~~~~~~
+http_net.c:288:48: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  288 |     ssize_t ret = tcp_send(connection, buffer, msg_len);
+      |                                                ^~~~~~~
+In file included from http_net.c:18:
+http_net.c: At top level:
+http_prot.h:68:20: warning: 'get_next_token' declared 'static' but never defined [-Wunused-function]
+   68 | static const char* get_next_token(const char* message, const char* delimiter, struct http_string* output);
+      |                    ^~~~~~~~~~~~~~
+http_prot.h:74:20: warning: 'http_parse_headers' declared 'static' but never defined [-Wunused-function]
+   74 | static const char* http_parse_headers(const char* header_start, struct http_message* output);
+      |                    ^~~~~~~~~~~~~~~~~~
+http_net.c:27:12: warning: 'our_ERR_IO' defined but not used [-Wunused-variable]
+   27 | static int our_ ## X = X
+      |            ^~~~
+http_net.c:32:1: note: in expansion of macro 'MK_OUR_ERR'
+   32 | MK_OUR_ERR(ERR_IO);
+      | ^~~~~~~~~~
+http_net.c:27:12: warning: 'our_ERR_OUT_OF_MEMORY' defined but not used [-Wunused-variable]
+   27 | static int our_ ## X = X
+      |            ^~~~
+http_net.c:31:1: note: in expansion of macro 'MK_OUR_ERR'
+   31 | MK_OUR_ERR(ERR_OUT_OF_MEMORY);
+      | ^~~~~~~~~~
+http_net.c:27:12: warning: 'our_ERR_NONE' defined but not used [-Wunused-variable]
+   27 | static int our_ ## X = X
+      |            ^~~~
+http_net.c:29:1: note: in expansion of macro 'MK_OUR_ERR'
+   29 | MK_OUR_ERR(ERR_NONE);
+      | ^~~~~~~~~~
+http_net.c:110:13: warning: Value stored to 'read_' is never read [deadcode.DeadStores]
+            read_ = 0;
+            ^       ~
+1 warning generated.
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o http_prot.o http_prot.c
+http_prot.c: In function 'http_get_var':
+http_prot.c:69:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   69 |         int len = strlen(token);
+      |                   ^~~~~~
+http_prot.c:70:29: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   70 |         strncpy(out, token, len);
+      |                             ^~~
+http_prot.c: In function 'http_parse_message':
+http_prot.c:97:24: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   97 |     char* start_addr = stream;
+      |                        ^~~~~~
+http_prot.c:101:19: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  101 |     char* space = " ";
+      |                   ^~~
+http_prot.c:109:36: warning: field precision specifier '.*' expects argument of type 'int', but argument 2 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
+  109 |         printf("Unknown protocol %.*s", check.len, check.val);
+      |                                  ~~^~   ~~~~~~~~~
+      |                                    |         |
+      |                                    int       size_t {aka long unsigned int}
+http_prot.c:115:23: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  115 |     char* body_addr = stream;
+      |                       ^~~~~~
+http_prot.c:119:23: warning: comparison of integer expressions of different signedness: 'int' and 'size_t' {aka 'long unsigned int'} [-Wsign-compare]
+  119 |     for (int i = 0; i < out->num_headers; ++i) {
+      |                       ^
+http_prot.c:129:22: warning: conversion from 'long int' to 'int' may change value [-Wconversion]
+  129 |     int header_len = body_addr - start_addr;
+      |                      ^~~~~~~~~
+http_prot.c:130:56: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  130 |     if (!found || *content_len == 0 || (bytes_received - header_len + sizeof(HTTP_HDR_END_DELIM)) >= *content_len) {
+      |                                                        ^
+http_prot.c:130:99: warning: comparison of integer expressions of different signedness: 'long unsigned int' and 'int' [-Wsign-compare]
+  130 |     if (!found || *content_len == 0 || (bytes_received - header_len + sizeof(HTTP_HDR_END_DELIM)) >= *content_len) {
+      |                                                                                                   ^~
+http_prot.c:132:25: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  132 |         out->body.len = *content_len;
+      |                         ^
+In file included from http_prot.c:10:
+http_prot.c: In function 'get_next_token':
+error.h:69:20: warning: returning 'int' from a function with return type 'const char *' makes pointer from integer without a cast [-Wint-conversion]
+   69 |             return ERR_INVALID_ARGUMENT; \
+      |                    ^~~~~~~~~~~~~~~~~~~~
+http_prot.c:142:5: note: in expansion of macro 'M_REQUIRE_NON_NULL'
+  142 |     M_REQUIRE_NON_NULL(message);
+      |     ^~~~~~~~~~~~~~~~~~
+error.h:69:20: warning: returning 'int' from a function with return type 'const char *' makes pointer from integer without a cast [-Wint-conversion]
+   69 |             return ERR_INVALID_ARGUMENT; \
+      |                    ^~~~~~~~~~~~~~~~~~~~
+http_prot.c:143:5: note: in expansion of macro 'M_REQUIRE_NON_NULL'
+  143 |     M_REQUIRE_NON_NULL(delimiter);
+      |     ^~~~~~~~~~~~~~~~~~
+http_prot.c:145:22: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  145 |     int del_length = strlen(delimiter);
+      |                      ^~~~~~
+http_prot.c:108:9: warning: 1st function call argument is an uninitialized value [core.CallAndMessage]
+    if (strncmp(check.val, "HTTP/1.1", check.len)) {
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o image_content.o image_content.c
+image_content.c: In function 'lazily_resize':
+image_content.c:19:15: warning: comparison of unsigned expression in '< 0' is always false [-Wtype-limits]
+   19 |     if (index < 0 || index > imgfs_file->header.max_files || !imgfs_file->metadata[index].is_valid) {
+      |               ^
+image_content.c:27:25: warning: conversion to 'int' from 'uint32_t' {aka 'unsigned int'} may change the sign of the result [-Wsign-conversion]
+   27 |     int orig_img_size = imgfs_file->metadata[index].size[ORIG_RES];
+      |                         ^~~~~~~~~~
+image_content.c:34:38: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   34 |             void *buffer = calloc(1, orig_img_size);
+      |                                      ^~~~~~~~~~~~~
+image_content.c:44:77: warning: conversion to 'long int' from 'uint64_t' {aka 'long unsigned int'} may change the sign of the result [-Wsign-conversion]
+   44 |             ret = fseek(imgfs_file->file, imgfs_file->metadata[index].offset[ORIG_RES], SEEK_SET);
+      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+image_content.c:49:33: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   49 |             ret = fread(buffer, orig_img_size, 1, imgfs_file->file);
+      |                                 ^~~~~~~~~~~~~
+image_content.c:49:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   49 |             ret = fread(buffer, orig_img_size, 1, imgfs_file->file);
+      |                   ^~~~~
+image_content.c:54:48: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   54 |             ret = vips_jpegload_buffer(buffer, orig_img_size, &orig_image, NULL);
+      |                                                ^~~~~~~~~~~~~
+image_content.c:75:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   75 |             ret = fwrite(output_buffer, len, 1, imgfs_file->file);
+      |                   ^~~~~~
+image_content.c:81:85: warning: conversion to 'long unsigned int' from 'long int' may change the sign of the result [-Wsign-conversion]
+   81 |             imgfs_file->metadata[index].offset[SMALL_RES] = ftell(imgfs_file->file) - len;
+      |                                                                                     ^
+image_content.c:82:59: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'uint32_t' {aka 'unsigned int'} may change value [-Wconversion]
+   82 |             imgfs_file->metadata[index].size[SMALL_RES] = len;
+      |                                                           ^~~
+image_content.c:97:38: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   97 |             void *buffer = calloc(1, orig_img_size);
+      |                                      ^~~~~~~~~~~~~
+image_content.c:107:77: warning: conversion to 'long int' from 'uint64_t' {aka 'long unsigned int'} may change the sign of the result [-Wsign-conversion]
+  107 |             ret = fseek(imgfs_file->file, imgfs_file->metadata[index].offset[ORIG_RES], SEEK_SET);
+      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+image_content.c:112:33: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  112 |             ret = fread(buffer, orig_img_size, 1, imgfs_file->file);
+      |                                 ^~~~~~~~~~~~~
+image_content.c:112:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  112 |             ret = fread(buffer, orig_img_size, 1, imgfs_file->file);
+      |                   ^~~~~
+image_content.c:117:48: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  117 |             ret = vips_jpegload_buffer(buffer, orig_img_size, &orig_image, NULL);
+      |                                                ^~~~~~~~~~~~~
+image_content.c:138:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  138 |             ret = fwrite(output_buffer, len, 1, imgfs_file->file);
+      |                   ^~~~~~
+image_content.c:144:85: warning: conversion to 'long unsigned int' from 'long int' may change the sign of the result [-Wsign-conversion]
+  144 |             imgfs_file->metadata[index].offset[THUMB_RES] = ftell(imgfs_file->file) - len;
+      |                                                                                     ^
+image_content.c:145:59: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'uint32_t' {aka 'unsigned int'} may change value [-Wconversion]
+  145 |             imgfs_file->metadata[index].size[THUMB_RES] = len;
+      |                                                           ^~~
+image_content.c:161:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  161 |     ret = fwrite(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |           ^~~~~~
+image_content.c:165:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  165 |     ret = fwrite(imgfs_file->metadata, sizeof(struct img_metadata), 1, imgfs_file->file);
+      |           ^~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o image_dedup.o image_dedup.c
+image_dedup.c: In function 'do_name_and_content_dedup':
+image_dedup.c:19:23: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   19 |     for (int i = 0; i < imgfs_file->header.max_files; i++) {
+      |                       ^
+image_dedup.c:21:51: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   21 |         if (imgfs_file->metadata[i].is_valid && i != index) {
+      |                                                   ^~
+image_dedup.c:27:34: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   27 |                 int index_size = strlen((const char*)imgfs_file->metadata[index].SHA);
+      |                                  ^~~~~~
+image_dedup.c:28:30: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   28 |                 int i_size = strlen((const char*)imgfs_file->metadata[i].SHA);
+      |                              ^~~~~~
+image_dedup.c:28:21: warning: unused variable 'i_size' [-Wunused-variable]
+   28 |                 int i_size = strlen((const char*)imgfs_file->metadata[i].SHA);
+      |                     ^~~~~~
+image_dedup.c:27:21: warning: unused variable 'index_size' [-Wunused-variable]
+   27 |                 int index_size = strlen((const char*)imgfs_file->metadata[index].SHA);
+      |                     ^~~~~~~~~~
+image_dedup.c:27:21: warning: Value stored to 'index_size' during its initialization is never read [deadcode.DeadStores]
+                int index_size = strlen((const char*)imgfs_file->metadata[index].SHA);
+                    ^~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+image_dedup.c:28:21: warning: Value stored to 'i_size' during its initialization is never read [deadcode.DeadStores]
+                int i_size = strlen((const char*)imgfs_file->metadata[i].SHA);
+                    ^~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_create.o imgfs_create.c
+imgfs_create.c: In function 'do_create':
+imgfs_create.c:14:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+   14 |     strcpy(imgfs_file->header.name, CAT_TXT);
+      |     ^~~~~~
+imgfs_create.c:5:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+    4 | #include <stdlib.h>        // for calloc
+  +++ |+#include <string.h>
+    5 | #include "error.h"
+imgfs_create.c:14:5: warning: incompatible implicit declaration of built-in function 'strcpy' [-Wbuiltin-declaration-mismatch]
+   14 |     strcpy(imgfs_file->header.name, CAT_TXT);
+      |     ^~~~~~
+imgfs_create.c:14:5: note: include '<string.h>' or provide a declaration of 'strcpy'
+imgfs_create.c:25:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   25 |     res = fwrite(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |           ^~~~~~
+imgfs_create.c:31:36: warning: comparison of unsigned expression in '< 0' is always false [-Wtype-limits]
+   31 |     if(imgfs_file->header.max_files<0) {
+      |                                    ^
+imgfs_create.c:34:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   34 |     res = fwrite(imgfs_file->metadata, sizeof(struct img_metadata), imgfs_file->header.max_files, imgfs_file->file);
+      |           ^~~~~~
+imgfs_create.c:35:12: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   35 |     if(res != imgfs_file->header.max_files) {
+      |            ^~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_delete.o imgfs_delete.c
+imgfs_delete.c: In function 'do_delete':
+imgfs_delete.c:27:23: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   27 |     for (int i = 0; i < imgfs_file->header.max_files; i++) {
+      |                       ^
+imgfs_delete.c:37:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   37 |             res = fwrite(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |                   ^~~~~~
+imgfs_delete.c:41:37: warning: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Wsign-conversion]
+   41 |             fseek(imgfs_file->file,i*sizeof(struct img_metadata),SEEK_CUR);
+      |                                     ^
+imgfs_delete.c:42:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   42 |             res = fwrite(&imgfs_file->metadata[i], sizeof(struct img_metadata), 1, imgfs_file->file);
+      |                   ^~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_insert.o imgfs_insert.c
+imgfs_insert.c: In function 'do_insert':
+imgfs_insert.c:38:23: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   38 |     for (int i = 0; i < imgfs_file->header.max_files; i++) {
+      |                       ^
+imgfs_insert.c:43:20: warning: pointer targets in passing argument 1 of 'SHA256' differ in signedness [-Wpointer-sign]
+   43 |             SHA256(image_buffer, image_size, imgfs_file->metadata[i].SHA);
+      |                    ^~~~~~~~~~~~
+      |                    |
+      |                    const char *
+In file included from imgfs_insert.c:2:
+/usr/include/openssl/sha.h:82:44: note: expected 'const unsigned char *' but argument is of type 'const char *'
+   82 | unsigned char *SHA256(const unsigned char *d, size_t n, unsigned char *md);
+      |                       ~~~~~~~~~~~~~~~~~~~~~^
+imgfs_insert.c:57:19: warning: implicit declaration of function 'do_name_and_content_dedup' [-Wimplicit-function-declaration]
+   57 |             res = do_name_and_content_dedup(imgfs_file, i);
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+imgfs_insert.c:72:23: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   72 |                 res = fwrite(image_buffer, image_size, 1, imgfs_file->file);
+      |                       ^~~~~~
+imgfs_insert.c:92:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   92 |             res = fwrite(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |                   ^~~~~~
+imgfs_insert.c:97:45: warning: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Wsign-conversion]
+   97 |             res = fseek(imgfs_file->file, i * sizeof(struct img_metadata), SEEK_CUR);
+      |                                             ^
+imgfs_insert.c:99:28: warning: implicit declaration of function 'decr_header' [-Wimplicit-function-declaration]
+   99 |                 int res2 = decr_header(imgfs_file);
+      |                            ^~~~~~~~~~~
+imgfs_insert.c:105:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  105 |             res = fwrite(&imgfs_file->metadata[i], sizeof(struct img_metadata), 1, imgfs_file->file);
+      |                   ^~~~~~
+imgfs_insert.c: In function 'decr_header':
+imgfs_insert.c:129:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  129 |     res = fwrite(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |           ^~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_list.o imgfs_list.c
+imgfs_list.c: In function 'do_list':
+imgfs_list.c:32:31: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   32 |             for (int i = 0; i < structure->header.max_files; i++) {
+      |                               ^
+imgfs_list.c:51:27: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   51 |         for (int i = 0; i < structure->header.max_files; i++) {
+      |                           ^
+imgfs_list.c:50:29: warning: unused variable 'json_string' [-Wunused-variable]
+   50 |         struct json_object* json_string;
+      |                             ^~~~~~~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_read.o imgfs_read.c
+imgfs_read.c: In function 'do_read':
+imgfs_read.c:21:23: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   21 |     for (int i = 0; i < imgfs_file->header.max_files; i++) {
+      |                       ^
+imgfs_read.c:26:60: warning: comparison between pointer and integer
+   26 |             if (imgfs_file->metadata[i].offset[resolution] == NULL || imgfs_file->metadata[i].size[resolution] == NULL) {
+      |                                                            ^~
+imgfs_read.c:26:112: warning: comparison between pointer and integer
+   26 |             if (imgfs_file->metadata[i].offset[resolution] == NULL || imgfs_file->metadata[i].size[resolution] == NULL) {
+      |                                                                                                                ^~
+imgfs_read.c:34:55: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+   34 |                 lazily_resize(resolution, imgfs_file, i);
+      |                                                       ^
+imgfs_read.c:41:73: warning: conversion to 'long int' from 'uint64_t' {aka 'long unsigned int'} may change the sign of the result [-Wsign-conversion]
+   41 |             ret = fseek(imgfs_file->file, imgfs_file->metadata[i].offset[resolution], SEEK_SET);
+      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+imgfs_read.c:46:19: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   46 |             ret = fread(*image_buffer, *image_size, 1, imgfs_file->file);
+      |                   ^~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_server_service.o imgfs_server_service.c
+In file included from imgfs_server_service.c:16:
+util.h:49: warning: "MIN" redefined
+   49 | #define MIN(a, b) ((a) < (b) ? (a) : (b))
+      | 
+In file included from /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:9,
+                 from /usr/include/glib-2.0/glib/gtypes.h:32,
+                 from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from /usr/include/vips/vips.h:83,
+                 from imgfs_server_service.c:13:
+/usr/include/glib-2.0/glib/gmacros.h:887: note: this is the location of the previous definition
+  887 | #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+      | 
+In file included from imgfs_server_service.c:16:
+util.h:50: warning: "MAX" redefined
+   50 | #define MAX(a, b) ((a) > (b) ? (a) : (b))
+      | 
+In file included from /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:9,
+                 from /usr/include/glib-2.0/glib/gtypes.h:32,
+                 from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from /usr/include/vips/vips.h:83,
+                 from imgfs_server_service.c:13:
+/usr/include/glib-2.0/glib/gmacros.h:884: note: this is the location of the previous definition
+  884 | #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
+      | 
+imgfs_server_service.c: In function 'server_startup':
+imgfs_server_service.c:57:23: warning: conversion from 'int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+   57 |         server_port = atoi(argv[2]);
+      |                       ^~~~
+imgfs_server_service.c: In function 'handle_http_message':
+imgfs_server_service.c:124:16: warning: implicit declaration of function 'handle_list_call' [-Wimplicit-function-declaration]
+  124 |         return handle_list_call(msg, connection);
+      |                ^~~~~~~~~~~~~~~~
+imgfs_server_service.c:126:16: warning: implicit declaration of function 'handle_insert_call' [-Wimplicit-function-declaration]
+  126 |         return handle_insert_call(msg, connection);
+      |                ^~~~~~~~~~~~~~~~~~
+imgfs_server_service.c:128:16: warning: implicit declaration of function 'handle_read_call' [-Wimplicit-function-declaration]
+  128 |         return handle_read_call(msg, connection);
+      |                ^~~~~~~~~~~~~~~~
+imgfs_server_service.c:130:16: warning: implicit declaration of function 'handle_delete_call' [-Wimplicit-function-declaration]
+  130 |         return handle_delete_call(msg, connection);
+      |                ^~~~~~~~~~~~~~~~~~
+imgfs_server_service.c: In function 'handle_list_call':
+imgfs_server_service.c:156:24: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  156 |     char* add_header = "Content-Type: application/json\r\n";
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+imgfs_server_service.c: In function 'handle_read_call':
+imgfs_server_service.c:167:53: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  167 |     int ret = http_get_var(&(msg->uri), "res", res, RES_SIZE);
+      |                                                     ^~~~~~~~
+imgfs_server_service.c:204:24: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  204 |     char* add_header = "Content-Type: image/jpeg\r\n";
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from http_net.h:11,
+                 from imgfs_server_service.c:18:
+imgfs_server_service.c: At top level:
+http_prot.h:68:20: warning: 'get_next_token' declared 'static' but never defined [-Wunused-function]
+   68 | static const char* get_next_token(const char* message, const char* delimiter, struct http_string* output);
+      |                    ^~~~~~~~~~~~~~
+http_prot.h:74:20: warning: 'http_parse_headers' declared 'static' but never defined [-Wunused-function]
+   74 | static const char* http_parse_headers(const char* header_start, struct http_message* output);
+      |                    ^~~~~~~~~~~~~~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfs_tools.o imgfs_tools.c
+imgfs_tools.c: In function 'do_close':
+imgfs_tools.c:28:19: warning: comparison between pointer and integer
+   28 |     if(!imgfs_file==NULL) {
+      |                   ^~
+imgfs_tools.c:29:30: warning: comparison between pointer and integer
+   29 |         if(!imgfs_file->file == NULL) {
+      |                              ^~
+imgfs_tools.c: In function 'do_open':
+imgfs_tools.c:51:15: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   51 |     int ret = fread(&imgfs_file->header, sizeof(struct imgfs_header), 1, imgfs_file->file);
+      |               ^~~~~
+imgfs_tools.c:59:11: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+   59 |     ret = fread(imgfs_file->metadata, sizeof(struct img_metadata), imgfs_file->header.max_files, imgfs_file->file);
+      |           ^~~~~
+imgfs_tools.c:60:12: warning: comparison of integer expressions of different signedness: 'int' and 'uint32_t' {aka 'unsigned int'} [-Wsign-compare]
+   60 |     if(ret != imgfs_file->header.max_files) {
+      |            ^~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o imgfscmd_functions.o imgfscmd_functions.c
+imgfscmd_functions.c: In function 'create_name':
+imgfscmd_functions.c:297:13: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  297 |     int n = strlen(img_id) + strlen(suffix) + strlen(".jpg") + 1;
+      |             ^~~~~~
+imgfscmd_functions.c:298:29: warning: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Wsign-conversion]
+  298 |     *new_name = calloc(1, n * sizeof(char));
+      |                             ^
+imgfscmd_functions.c:302:25: warning: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Wsign-conversion]
+  302 |     snprintf(*new_name, n, "%s%s.jpg", img_id, suffix);
+      |                         ^
+imgfscmd_functions.c: In function 'write_disk_image':
+imgfscmd_functions.c:310:15: warning: conversion from 'size_t' {aka 'long unsigned int'} to 'int' may change value [-Wconversion]
+  310 |     int ret = fwrite(image_buffer, image_size, 1, fp);
+      |               ^~~~~~
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o socket_layer.o socket_layer.c
+socket_layer.c: In function 'tcp_read':
+socket_layer.c:70:15: warning: comparison of unsigned expression in '< 0' is always false [-Wtype-limits]
+   70 |     if(buflen < 0 || active_socket == -1) {     // sock_id == -1 in case of error
+      |               ^
+socket_layer.c: In function 'tcp_send':
+socket_layer.c:78:21: warning: comparison of unsigned expression in '< 0' is always false [-Wtype-limits]
+   78 |     if(response_len < 0 || active_socket == -1) {
+      |                     ^
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -I/usr/include/json-c -g -pedantic -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wconversion -Wunreachable-code -Wcast-qual -W -Wformat=2 -Winit-self -Wuninitialized -Wcast-align -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -pthread -I/usr/include/libgsf-1 -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/orc-0.4 -I/usr/include/OpenEXR -I/usr/include/openjpeg-2.4 -I/usr/include/poppler/glib -I/usr/include/poppler -I/usr/include/librsvg-2.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/openslide -I/usr/lib/x86_64-linux-gnu/hdf5/serial/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -DWEEK=12 -fsanitize=address  -c -o util.o util.c
+/usr/share/clang/scan-build-14/bin/../libexec/ccc-analyzer -fsanitize=address  imgfscmd.o error.o http_net.o http_prot.o image_content.o image_dedup.o imgfs_create.o imgfs_delete.o imgfs_insert.o imgfs_list.o imgfs_read.o imgfs_server_service.o imgfs_tools.o imgfscmd_functions.o socket_layer.o util.o  -ljson-c -fsanitize=address -lvips -lgobject-2.0 -lglib-2.0 -lm -lssl -lcrypto -o imgfscmd
+scan-build: Analysis run complete.
+scan-build: 4 bugs found.
+scan-build: Run 'scan-view /tmp/scan-build-2024-06-03-223157-881-1' to examine bug reports.

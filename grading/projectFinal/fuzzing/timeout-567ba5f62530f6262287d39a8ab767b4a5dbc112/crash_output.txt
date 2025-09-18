@@ -1,0 +1,25 @@
+/home/ryang/cs202/cs202-24-fuzz-corpus/working/dedup-crashes/timeout-567ba5f62530f6262287d39a8ab767b4a5dbc112
+=================================================================
+==3447378==ERROR: AddressSanitizer: attempting free on address which was not malloc()-ed: 0x61d0000048c0 in thread T0
+    #0 0x55e2e09b0972 in __interceptor_free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xff972) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #1 0x55e2e0a1fc39 in do_close /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfs_tools.c:34:13
+    #2 0x55e2e0a0cea3 in do_delete_cmd /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd_functions.c:203:9
+    #3 0x55e2e0a081d1 in fuzz_main /home/ryang/cs202/cs202-24-fuzz-corpus/projects/cs202-24-prj-systemagic/./done/imgfscmd.c:46:23
+    #4 0x55e2e09f3caa in LLVMFuzzerTestOneInput /home/ryang/cs202/cs202-24-fuzz-corpus/src/fuzz-target.c:106:13
+    #5 0x55e2e09145a3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x635a3) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #6 0x55e2e08fe31f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x4d31f) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #7 0x55e2e0904076 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x53076) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #8 0x55e2e092de92 in main (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x7ce92) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #9 0x7fdcae7b2d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #10 0x7fdcae7b2e3f in __libc_start_main csu/../csu/libc-start.c:392:3
+    #11 0x55e2e08f8be4 in _start (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x47be4) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+
+DEDUP_TOKEN: __interceptor_free--do_close--do_delete_cmd--fuzz_main--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_call_main--__libc_start_main--_start
+0x61d0000048c0 is located 192 bytes inside of 1008-byte region [0x61d000004800,0x61d000004bf0)
+allocated by thread T0 here:
+    #0 0x55e2e09b1797 in posix_memalign (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0x100797) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2)
+    #1 0x7fdcaf0298c6  (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x748c6) (BuildId: c74e800dfd5f72649d673b44292f4a817e45150b)
+
+DEDUP_TOKEN: posix_memalign--
+SUMMARY: AddressSanitizer: bad-free (/home/ryang/cs202/cs202-24-fuzz-corpus/working/build/cs202-24-prj-systemagic/fuzz-target+0xff972) (BuildId: a19fba821b42851127b6cac8b0839d1ffc3bd0b2) in __interceptor_free
+==3447378==ABORTING
